@@ -22,7 +22,7 @@ In celebration of GIS Day, we thought it would be fun to recreate John Snow's ma
 Dr. John Snow is considered one of the fathers of modern epidemiology, in part because of his pioneering work during the 1854 London cholera outbreak. During the mid-1800’s the prevailing theory was that these outbreaks were caused by miasma (the spread of disease in the air due to decomposing particles). However, Snow was skeptical and mapped all the occurrences of cholera by home address (marked by the stacked black bars) as well as the location of public water pumps. By analyzing the spatial pattern, Snow was able to determine the water pump on Broad Street was the source of the outbreak.
 
 
-<h1 align="center"> Mapping the 1854 London cholera outbreak tutorial<h1>
+<h1 align="center"> Mapping the 1854 London cholera outbreak tutorial</h1>
 
 In this tutorial you will:
 
