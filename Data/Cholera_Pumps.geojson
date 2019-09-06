@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "Cholera_Pumps",
+"features": [
+{ "type": "Feature", "properties": { "Name": null, "Count": 1 }, "geometry": { "type": "Point", "coordinates": [ -0.136668, 51.513341 ] } },
+{ "type": "Feature", "properties": { "Name": null, "Count": 1 }, "geometry": { "type": "Point", "coordinates": [ -0.139586, 51.513876 ] } },
+{ "type": "Feature", "properties": { "Name": null, "Count": 1 }, "geometry": { "type": "Point", "coordinates": [ -0.139671, 51.514906 ] } },
+{ "type": "Feature", "properties": { "Name": null, "Count": 1 }, "geometry": { "type": "Point", "coordinates": [ -0.13163, 51.512354 ] } },
+{ "type": "Feature", "properties": { "Name": null, "Count": 1 }, "geometry": { "type": "Point", "coordinates": [ -0.133594, 51.512139 ] } },
+{ "type": "Feature", "properties": { "Name": null, "Count": 1 }, "geometry": { "type": "Point", "coordinates": [ -0.135919, 51.511542 ] } },
+{ "type": "Feature", "properties": { "Name": null, "Count": 1 }, "geometry": { "type": "Point", "coordinates": [ -0.133962, 51.510019 ] } },
+{ "type": "Feature", "properties": { "Name": null, "Count": 1 }, "geometry": { "type": "Point", "coordinates": [ -0.138199, 51.511295 ] } }
+]
+}
