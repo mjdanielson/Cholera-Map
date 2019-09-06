@@ -4,7 +4,7 @@
 <h1 align="center"> Happy GIS Day! </h1>
 
 
-In celebration of GIS Day, we thought it would be fun to recreate John Snow's map of 1894 map of cholera outbreaks in London using Mapbox Studio and GL-JS!
+In celebration of GIS Day, we thought it would be fun to recreate John Snow's 1854 map of cholera outbreaks in London using Mapbox Studio and GL-JS!
 
 <p align="center">
   <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/broad-street-pump2.jpg">
@@ -41,6 +41,10 @@ In this tutorial you will:
 
 ## Data
 
+* [Cholera deaths](https://github.com/mjdanielson/Cholera-Map/blob/master/Data/Cholera_Deaths.geojson): Number of deaths attributed to cholera in 1854 by location. 
+
+* [Location of pumps](https://github.com/mjdanielson/Cholera-Map/blob/master/Data/Cholera_Pumps.geojson)
+
 ## Upload data as a tileset
 
 Let's upload our data to the [tileset editor](https://studio.mapbox.com/tilesets/).  At the top of the tileset editor page, select
@@ -63,8 +67,20 @@ After you've inspected your data, it's time to create a new style so you can put
   <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/broadstreet(source13)-large.jpg" width="500" height="474" title="Broad Street Pump"> 
 </p>
 
-Once you've uploaded your photo to Cartogram, start playing around with the settings for your buildings, land, font, and streets until you have your desired basemap style. When you've finished, select <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/saved_style.png" width="148" height="20"> at the top of the screen. This should automatically take you to the Mapbox Studio editor. 
+Once you've uploaded your photo to Cartogram, start playing around with the settings for your buildings, land, font, and streets until you have your desired basemap style. 
+
 
 <p align="center">
-  <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/cartogram.gif">
+  <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/cartogram.gif" width="576" height="261.6">
+  </p>
+   
+ 
+When you've finished, select <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/saved_style.png" width="148" height="20"> at the top of the screen. This should automatically take you to the Mapbox Studio editor. 
+
+In the style editor, change the rename your Style. In this example, the Style name has been changed to 'John Snow Cholera'. 
+
+Next, scroll through the layers 
+
+<p align="center">
+  <img src="">
   </p>
