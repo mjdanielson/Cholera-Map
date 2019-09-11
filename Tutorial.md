@@ -31,7 +31,7 @@ In this tutorial you will:
 * [Add data](https://www.mapbox.com/help/uploads/) to a style
 * [Manage and edit layers](https://www.mapbox.com/studio-manual/reference/styles/#style-editor) in your style
 * Create a web map 
-* Adding basic interactivity to your map 
+* Add basic interactivity to your map 
 
 ## Software requirements
 
@@ -183,14 +183,10 @@ Add the following code between the <body> opening and </body> closing tags:
 <div class='map-overlay' id='features'><h2>Broad Street 1854</h2></div>
 ```
 
-Next, you will also want to apply some CSS to visualize what the layout looks like. This creates the visual rules for our front-end elements (legend, title box, information box). Under the opening <style> tag at the top of your code, add the following: 
+Next, you will also want to apply some CSS to visualize what the layout looks like. This creates the visual rules for our front-end elements (legend, title box, information box). Under the opening <body> tag at the top of your code, add the following: 
   
 ```  
-  body {
-  margin: 0;
-  padding: 0;
-}
-
+<style>
 h2,
 h3 {
   margin: 10px;
@@ -205,16 +201,6 @@ p {
   font-size: 0.85em;
   margin: 10px;
   text-align: left;
-}
-
-/**
-* Create a position for the map
-* on the page */
-#map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
 }
 
 /**
@@ -237,8 +223,29 @@ p {
   top: 0;
   height: 100px;
   margin-top: 20px;
-  width: 250px;
+  width: 350px;
 }
+
+
+
+/* Styling your pop-up */
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  font: 400 12px/20px 'Courier', Sans-serif;
+  padding: 2;
+  /*controling transparency and color of pop-up */
+  background-color: rgba(255,255,255,.75);
+}
+
+.mapboxgl-popup-content-wrapper {
+  padding: 2%;
+}
+
+
+</style>
 
 ```
 
@@ -311,4 +318,73 @@ Add the following code to your <div> element containing your map overlay class. 
 <p>During the mid-1800’s in London, Dr. John Snow mapped all the occurrences of cholera by home address, as well as the location of public water pumps. </p>
 <p>By analyzing the spatial pattern, Snow was able to determine the water pump on Broad Street was the source of the outbreak. 
 </p>
+```
+
+### [The load event](https://docs.mapbox.com/help/tutorials/choropleth-studio-gl-pt-2/#the-load-event)
+
+What is a callback?
+
+Initializing the map on the page does more than create a container in the map div. It also tells the browser to request the Mapbox Studio style you created in part 1. This can take variable amounts of time depending on how quickly the Mapbox server can respond to that request, and everything else you're going to add in the code relies on that style being loaded onto the map. As such, it's important to make sure the style is loaded before any more code is executed.
+
+Fortunately, the map object can tell your browser about certain events that occur when the map's state changes. One of these events is load, which is emitted when the style has been loaded onto the map. Through the map.on method, you can make sure that none of the rest of your code is executed until that event occurs by placing it in a [callback function](https://github.com/maxogden/art-of-node#callbacks) that is called when the load event occurs.
+
+To make sure the rest of the code can execute, it needs to live in a callback function that is executed when the map is finished loading.
+
+Add the load event before the closing script tag </script>
+
+```
+map.on('load', function() {
+  // the rest of the code will go in here
+});
+```
+
+
+### Add a popup! 
+
+When the cursor is hovering over a graduate point a popup will display the number of cholera related deaths recorded in that region. 
+
+To do this, add a listener for the mousemove event, identify which graduated point is at the location of the cursor if any, and create a popup:
+
+```
+var features = map.queryRenderedFeatures(e.point, {
+    layers: ['Cholera Deaths'] // replace this with the name of the layer
+  });
+  
+  if (!features.length) {
+    return;
+  }
+  var feature = features[0];
+
+});
+
+
+//initialize popup 
+
+var popup = new mapboxgl.Popup({ 
+		closeButton: false,
+    closeOnClick: false,
+});
+
+ // When a click event occurs on a feature in the Cholera Deaths layer, open a popup at the
+// location of the click, with description HTML from its properties.
+
+map.on('mouseenter', 'Cholera Deaths', function (e) {
+//change the cursor style as a UI indicator
+map.getCanvas().style.cursor = 'pointer';
+
+// Create variables for your tabular information 
+var aggregate = e.features[0].properties.Deaths;
+
+// Populate the popup and set its coordinates
+// based on the feature found.
+popup.setLngLat(e.lngLat)
+.setHTML(aggregate)
+.addTo(map);
+});
+
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'Cholera Deaths', function () {
+map.getCanvas().style.cursor = '';
+});
 ```
