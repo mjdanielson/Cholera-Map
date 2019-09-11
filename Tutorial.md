@@ -31,7 +31,6 @@ In this tutorial you will:
 * [Add data](https://www.mapbox.com/help/uploads/) to a style
 * [Manage and edit layers](https://www.mapbox.com/studio-manual/reference/styles/#style-editor) in your style
 * Create a web map 
-* Adding a legend 
 * Adding basic interactivity to your map 
 
 ## Software requirements
@@ -173,14 +172,13 @@ Initialize your map by copying the following code into the HTML tab of your JSFi
 
 ```
 
-### Add a title, info box, and legend (front-end UI):
+### Add a title and info box(front-end UI):
 
 Add the following code between the <body> opening and </body> closing tags:
 
 ```
 <div id='map'></div>
 <div class='map-overlay' id='features'><h2>Broad Street 1854</h2></div>
-<div class='map-overlay' id='legend'></div>
 ```
 
 Next, you will also want to apply some CSS to visualize what the layout looks like. This creates the visual rules for our front-end elements (legend, title box, information box). Under the opening <style> tag at the top of your code, add the following: 
@@ -300,10 +298,13 @@ Hit run to see your changes.
 
 ### Add additional information
 
-With some projects, this is where you'd stop: you put a map on a page! But for this map, you will add two pieces of additional information that will make the map even more useful: an information window that gives the user a brief history of the map and a pop up that displays the number of cholera deaths for whichever graduated point the cursor is hovering on.
+With some projects, this is where you'd stop: you put a map on a page! But for this map, you will add two pieces of additional information that will make the map even more useful: an information window that gives the user a brief history of the cholera outbreak of 1854 and a pop up that displays the number of cholera deaths for whatever graduated point the cursor is hovering on.
 
 ### Add the information box 
 
+Add the following code to your <div> element containing your map overlay class. This text should go after your 'Broad Street, 1854' header. 
+  
+  
 ```
 <p>During the mid-1800’s in London, Dr. John Snow mapped all the occurrences of cholera by home address, as well as the location of public water pumps. </p>
 <p>By analyzing the spatial pattern, Snow was able to determine the water pump on Broad Street was the source of the outbreak. 
