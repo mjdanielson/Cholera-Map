@@ -133,8 +133,6 @@ Next, increase the radius of the 'Pumps Outline' layer to 6, change the color to
   </p>
   
 
-
-
   
 ## Publish your style 
 
@@ -143,6 +141,171 @@ Now that you've got your map looking good, it's time to publish! Click the Publi
 Hooray! Your style is now published! If you go back to your Styles page, you will see your new style at the top of the list.
 
 You can use your ‘Share URL’ to open your style in a new browser tab and share it with collaborators for review.
+
+
+## Create a web map 
+
+Now that we have edited our layers and created a style, let's create a web map! 
+
+For this part of the lesson, we will be using a program called JSFiddle. You can sign up for a free acount at: https://jsfiddle.net/
+
+JSFiddle is a simple tool for building and testing code for web development. We recommend using JSFiddle in a Chrome browser
+
+For simplicity, we recommend that you change the editor layout settings in JSFiddle to display by ‘tabs’.
+
+Initialize your map by copying the following code into the HTML tab of your JSFiddle:
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Cholera Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+    </style>
+</head>
+<body>
+</body>
+</html>
+
+```
+
+### Add a title, info box, and legend (front-end UI):
+
+Add the following code between the <body> opening and </body> closing tags:
+
+```
+<div id='map'></div>
+<div class='map-overlay' id='features'><h2>Broad Street 1854</h2></div>
+<div class='map-overlay' id='legend'></div>
+```
+
+Next, you will also want to apply some CSS to visualize what the layout looks like. This creates the visual rules for our front-end elements (legend, title box, information box). Under the opening <style> tag at the top of your code, add the following: 
   
+```  
+  body {
+  margin: 0;
+  padding: 0;
+}
 
+h2,
+h3 {
+  margin: 10px;
+  font-size: 1.2em;
+}
 
+h3 {
+  font-size: 1em;
+}
+
+p {
+  font-size: 0.85em;
+  margin: 10px;
+  text-align: left;
+}
+
+/**
+* Create a position for the map
+* on the page */
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+/**
+* Set rules for how the map overlays
+* information box will be displayed
+* on the page. */
+
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.7);
+  margin-right: 20px;
+  font-family: Courier, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+#features {
+  top: 0;
+  height: 100px;
+  margin-top: 20px;
+  width: 250px;
+}
+
+```
+
+Hit run to see your changes. 
+
+In the next step, you will add the map to your page and the project will start taking shape.
+
+### Initialize the map 
+
+For the next step you will need a [Mapbox access token](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/) and your [style ID](https://docs.mapbox.com/help/glossary/style-id/). Without this, the rest of the code will not work. 
+
+For the next step you will need a [Mapbox access token](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/) and your [style ID](https://docs.mapbox.com/help/glossary/style-id/). Without this, the rest of the code will not work. 
+
+<p align = "center">
+  <img src="https://github.com/mjdanielson/University-of-Buffalo/blob/master/Labs/Choropleth-Map/Images/Access_Token.png">
+</p>
+
+<p align = "center">
+<img src="https://github.com/mjdanielson/University-of-Buffalo/blob/master/Labs/Choropleth-Map/Images/Style_ID.gif">
+</p>
+
+Add the following code after <div class='map-over' id='legend'></div> and before the closing </body> tag
+
+```
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWpkYW5pZWxzb24iLCJhIjoiY2p2bzFlbnZ5MW5pbTN5cGJ2YWp2MW9vaiJ9.kAaZq3iyJwvrMLK7XDs_qw';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'your-style-url', // replace this with your style URL
+    center: [,], // starting position [lng, lat] - adjust the starting position to be centered on Soho, London (-0.137,  51.513) 
+    zoom: 3 // starting zoom - change the starting zoom position to 15.5 
+});
+</script>
+```
+
+Add your style id to the map variable. Edit the line of code that has the comment 'replace this with your style URL'.
+
+```
+style: 'your-style-url', // replace this with your style URL
+```
+
+Next, we want to center our map on our data. Locate the line of code that is telling the map where to center the view. Try changing the center location by picking a new coordinate using http://geojson.io/ (or looking at the bottom of the right-hand panel in the Mapbox Studio style editor). Change the coordinates in your code and run your changes.
+
+```
+center: [,], // starting position [lng, lat] 
+```
+
+Change the zoom level to 15.5.
+
+```
+zoom: 3 // starting zoom - change the starting zoom position to 15.5
+```
+
+Hit run to see your changes. 
+
+<p align="center">
+  <img src="">
+  </p>
+
+### Add additional information
+
+With some projects, this is where you'd stop: you put a map on a page! But for this map, you will add two pieces of additional information that will make the map even more useful: an information window that gives the user a brief history of the map and a pop up that displays the number of cholera deaths for whichever graduated point the cursor is hovering on.
+
+### Add the information box 
+
+```
+<p>During the mid-1800’s in London, Dr. John Snow mapped all the occurrences of cholera by home address, as well as the location of public water pumps. </p>
+<p>By analyzing the spatial pattern, Snow was able to determine the water pump on Broad Street was the source of the outbreak. 
+</p>
+```
