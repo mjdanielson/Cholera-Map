@@ -157,19 +157,32 @@ Initialize your map by copying the following code into the HTML tab of your JSFi
 ```
 <!DOCTYPE html>
 <html>
-<head>
+
+  <head>
     <meta charset='utf-8' />
     <title>Cholera Map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
-   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
-<style>
-body { margin:0; padding:0; }
-#map { position:absolute; top:0; bottom:0; width:100%; }
-</style>
-</head>
-<body>
-</body>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+
+    </style>
+  </head>
+
+  <body>
+  </body>
+
 </html>
 
 ```
@@ -180,7 +193,7 @@ Add the following code between the <body> opening and </body> closing tags:
 
 ```
 <div id='map'></div>
-<div class='map-overlay' id='features'><h2>Broad Street 1854</h2></div>
+<div class='map-overlay' id='features'> <h2>Broad Street, 1854</h2></div>
 ```
 
 Next, you will also want to apply some CSS to visualize what the layout looks like. This creates the visual rules for our front-end elements (legend, title box, information box). Under the opening ```<style>``` tag at the top of your code, add the following: 
@@ -220,7 +233,7 @@ p {
 
 #features {
   top: 0;
-  height: 100px;
+  height: 200px;
   margin-top: 20px;
   width: 350px;
 }
@@ -299,7 +312,7 @@ zoom: 3 // starting zoom - change the starting zoom position to 15.5
 Hit run to see your changes. 
 
 <p align="center">
-  <img src="">
+  <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/Map-V1.png">
   </p>
 
 ### Add additional information
@@ -359,7 +372,7 @@ var features = map.queryRenderedFeatures(e.point, {
 
 var popup = new mapboxgl.Popup({ 
 		closeButton: false,
-    closeOnClick: false,
+                closeOnClick: true,
 });
 
  // When a click event occurs on a feature in the Cholera Deaths layer, open a popup at the
@@ -383,5 +396,15 @@ popup.setLngLat(e.lngLat)
 // Change it back to a pointer when it leaves.
 map.on('mouseleave', 'Cholera Deaths', function () {
 map.getCanvas().style.cursor = '';
-});
+
 ```
+
+
+### Mission Complete!
+
+You have created an interactive choropleth map!
+
+
+<p align="center">
+	<img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/Final.png">
+	</p>
