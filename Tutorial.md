@@ -402,7 +402,7 @@ map.getCanvas().style.cursor = '';
 
 ### Mission Complete!
 
-You have created an interactive choropleth map!
+You have successfully recreated John Snow's famous map! Congratulations and happy GIS day!
 
 
 <p align="center">
