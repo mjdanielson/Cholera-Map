@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <title>Cholera Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+
+      h2,
+      h3 {
+        margin: 10px;
+        font-size: 1.2em;
+      }
+
+      h3 {
+        font-size: 1em;
+      }
+
+      p {
+        font-size: 0.85em;
+        margin: 10px;
+        text-align: left;
+      }
+
+      /**
+* Set rules for how the map overlays
+* information box will be displayed
+* on the page. */
+
+      .map-overlay {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.7);
+        margin-right: 20px;
+        font-family: Courier, sans-serif;
+        overflow: auto;
+        border-radius: 3px;
+      }
+
+      #features {
+        top: 0;
+        height: 200px;
+        margin-top: 20px;
+        width: 350px;
+      }
+
+
+
+      /* Styling your pop-up */
+      .mapboxgl-popup-close-button {
+        display: none;
+      }
+
+      .mapboxgl-popup-content {
+        font: 400 12px/20px 'Courier', Sans-serif;
+        padding: 2;
+        /*controling transparency and color of pop-up */
+        background-color: rgba(255, 255, 255, .75);
+      }
+
+      .mapboxgl-popup-content-wrapper {
+        padding: 2%;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id='map'></div>
+    <div class='map-overlay' id='features'>
+      <h2>Broad Street, 1854</h2>
+      <p>During the mid-1800’s in London, Dr. John Snow mapped all the occurrences of cholera by home address, as well as the location of public water pumps. </p>
+      <p>By analyzing the spatial pattern, Snow was able to determine the water pump on Broad Street was the source of the outbreak.
+      </p>
+    </div>
+
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoibWpkYW5pZWxzb24iLCJhIjoiY2p2bzFlbnZ5MW5pbTN5cGJ2YWp2MW9vaiJ9.kAaZq3iyJwvrMLK7XDs_qw';
+      var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mjdanielson/ck06xrvod2skg1crnkksideyv', // replace this with your style URL
+        center: [-0.137, 51.513], // starting position [lng, lat] - adjust the starting position to be centered on Soho, London (-0.137,  51.513) 
+        zoom: 15.5 // starting zoom - change the starting zoom position to 15.5 
+      });
+      
+      map.on('load', function() {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['Cholera Deaths'] // replace this with the name of the layer
+  });
+  
+  if (!features.length) {
+    return;
+  }
+  var feature = features[0];
+
+});
+
+
+//initialize popup 
+
+var popup = new mapboxgl.Popup({ 
+		closeButton: false,
+    closeOnClick: true,
+});
+
+ // When a click event occurs on a feature in the Cholera Deaths layer, open a popup at the
+// location of the click, with description HTML from its properties.
+
+map.on('mouseenter', 'Cholera Deaths', function (e) {
+//change the cursor style as a UI indicator
+map.getCanvas().style.cursor = 'pointer';
+
+// Create variables for your tabular information 
+var aggregate = e.features[0].properties.Deaths;
+
+// Populate the popup and set its coordinates
+// based on the feature found.
+popup.setLngLat(e.lngLat)
+.setHTML(aggregate)
+.addTo(map);
+});
+
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'Cholera Deaths', function () {
+map.getCanvas().style.cursor = '';
+
+});
+
+    </script>
+  </body>
+
+</html>
