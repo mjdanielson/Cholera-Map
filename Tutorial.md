@@ -183,10 +183,9 @@ Add the following code between the <body> opening and </body> closing tags:
 <div class='map-overlay' id='features'><h2>Broad Street 1854</h2></div>
 ```
 
-Next, you will also want to apply some CSS to visualize what the layout looks like. This creates the visual rules for our front-end elements (legend, title box, information box). Under the opening <body> tag at the top of your code, add the following: 
+Next, you will also want to apply some CSS to visualize what the layout looks like. This creates the visual rules for our front-end elements (legend, title box, information box). Under the opening ```<style>``` tag at the top of your code, add the following: 
   
 ```  
-<style>
 h2,
 h3 {
   margin: 10px;
@@ -244,8 +243,6 @@ p {
   padding: 2%;
 }
 
-
-</style>
 
 ```
 
