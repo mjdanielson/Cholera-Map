@@ -402,7 +402,7 @@ map.getCanvas().style.cursor = '';
 
 ### Mission Complete!
 
-You have successfully recreated John Snow's famous map! Congratulations and happy GIS day!
+You have successfully recreated John Snow's famous map! Congratulations and happy GIS day! The final map can be accessed [here](https://mjdanielson.github.io/Cholera-Map/). 
 
 
 <p align="center">
