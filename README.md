@@ -154,7 +154,7 @@ For simplicity, we recommend that you change the editor layout settings in JSFid
 
 Initialize your map by copying the following code into the HTML tab of your JSFiddle:
 
-```
+```HTML
 <!DOCTYPE html>
 <html>
 
@@ -198,7 +198,7 @@ Add the following code between the <body> opening and </body> closing tags:
 
 Next, you will also want to apply some CSS to visualize what the layout looks like. This creates the visual rules for our front-end elements (legend, title box, information box). Under the opening ```<style>``` tag at the top of your code, add the following: 
   
-```  
+```css  
 h2,
 h3 {
   margin: 10px;
@@ -279,7 +279,7 @@ For the next step you will need a [Mapbox access token](https://docs.mapbox.com/
 
 Add the following code after <div class='map-over' id='legend'></div> and before the closing </body> tag
 
-```
+```javascript
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibWpkYW5pZWxzb24iLCJhIjoiY2p2bzFlbnZ5MW5pbTN5cGJ2YWp2MW9vaiJ9.kAaZq3iyJwvrMLK7XDs_qw';
 var map = new mapboxgl.Map({
@@ -355,7 +355,8 @@ When the cursor is hovering over a graduate point a popup will display the numbe
 
 To do this, add a listener for the mousemove event, identify which graduated point is at the location of the cursor if any, and create a popup:
 
-```
+```javascript
+
 var features = map.queryRenderedFeatures(e.point, {
     layers: ['Cholera Deaths'] // replace this with the name of the layer
   });
