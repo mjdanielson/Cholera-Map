@@ -4,7 +4,7 @@
 <h1 align="center"> Happy GIS Day! </h1>
 
 
-In celebration of GIS Day, we thought it would be fun to recreate John Snow's 1854 map of cholera outbreaks in London using Mapbox Studio and GL-JS!
+In celebration of GIS Day, we thought it would be fun to recreate John Snow's 1854 map of cholera outbreaks in London using Mapbox Studio and Mapbox GL JS!
 
 <p align="center">
   <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/broad-street-pump2.jpg">
@@ -19,7 +19,7 @@ In celebration of GIS Day, we thought it would be fun to recreate John Snow's 18
 </p> 
 
 
-Dr. John Snow is considered one of the fathers of modern epidemiology, in part because of his pioneering work during the 1854 London cholera outbreak. During the mid-1800’s the prevailing theory was that these outbreaks were caused by miasma (the spread of disease in the air due to decomposing particles). However, Snow was skeptical and mapped all the occurrences of cholera by home address (marked by the stacked black bars) as well as the location of public water pumps. By analyzing the spatial pattern, Snow was able to determine the water pump on Broad Street was the source of the outbreak.
+Dr. John Snow is considered one of the fathers of modern epidemiology, in part because of his pioneering work during the 1854 London cholera outbreak. During the mid-1800’s the prevailing theory was that these outbreaks were caused by miasma (the spread of disease in the air due to decomposing particles). However, Snow was skeptical and mapped all the occurrences of cholera by home address (marked by the stacked black bars in the map above) as well as the location of public water pumps. By analyzing the spatial pattern, Snow was able to determine the water pump on Broad Street was the source of the outbreak.
 
 
 <h1 align="center"> Mapping the 1854 London cholera outbreak tutorial</h1>
@@ -40,14 +40,16 @@ In this tutorial you will:
 
 ## Data
 
-* [Cholera deaths](https://github.com/mjdanielson/Cholera-Map/blob/master/Data/Cholera_Deaths.geojson): Number of deaths attributed to cholera in 1854 by location. Data sourced by [Robin Wilson at Southampton] University(http://blog.rtwilson.com/john-snows-cholera-data-in-more-formats/).
+Save the following **GeoJSON** files to your computer:
 
-* [Location of pumps](https://github.com/mjdanielson/Cholera-Map/blob/master/Data/Cholera_Pumps.geojson)
+* [Cholera deaths](https://raw.githubusercontent.com/mjdanielson/Cholera-Map/master/Data/Cholera_Deaths.geojson): Number of deaths attributed to cholera in 1854 by location. Data sourced by [Robin Wilson at Southampton University](http://blog.rtwilson.com/john-snows-cholera-data-in-more-formats/).
+
+* [Location of pumps](https://raw.githubusercontent.com/mjdanielson/Cholera-Map/master/Data/Cholera_Pumps.geojson)
 
 ## Upload data as a tileset
 
-Let's upload our data to the [tileset editor](https://studio.mapbox.com/tilesets/).  At the top of the tileset editor page, select
-  <img src="https://github.com/mjdanielson/University-of-Buffalo/blob/master/Labs/Choropleth-Map/Images/Tileset.png" title="Tileset Upload">. Select __Upload File__ and __Select a file__ and navigate to the file containing your census data tracts GeoJSON and select __Confirm__. 
+Let's upload our data to the [tilesets page](https://studio.mapbox.com/tilesets/).  At the top of the tilesets page, click the **New Tileset** button
+  <img src="https://github.com/mjdanielson/University-of-Buffalo/blob/master/Labs/Choropleth-Map/Images/Tileset.png" title="Tileset Upload">. Select __Upload File__ and __Select a file__ and navigate to the `Cholera-Deaths.geojson` file and select __Confirm__. 
 
   <p align= 'center'>
   <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/Screen%20Shot%202019-09-05%20at%204.11.18%20PM.png" title="Tileset1">
@@ -55,7 +57,7 @@ Let's upload our data to the [tileset editor](https://studio.mapbox.com/tilesets
 
 When you upload vector data to your Mapbox account, our servers convert it to a [vector tileset](https://docs.mapbox.com/help/glossary/tileset/) so it can be rendered quickly and efficiently in the Mapbox Studio style editor and with Mapbox GL JS. The tileset information page shows some useful information about the tileset that was created from your uploaded data. Feel free to explore the information page for each of your new tilesets. 
 
-Upload the Cholera_Pump.geojson as a tileset. 
+Next, repeat the above process to upload the `Cholera_Pump.geojson` as a tileset. 
 
 
 ## Create a style for a basemap using Cartogram 
@@ -82,7 +84,7 @@ In the style editor, change the rename your Style. In this example, the Style na
   <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/Style_Name.png">
   </p>
 
-### [Add data](https://www.mapbox.com/help/uploads/) to a style
+### [Add layers](https://docs.mapbox.com/studio-manual/reference/styles/#new-layer) to a style
 
 To add and style the Cholera deaths data, you will need to add a new layer to the map. At the top of the layer panel, click <img src="https://github.com/mjdanielson/Cholera-Map/blob/master/Images/Add_Layer.png">
 
@@ -189,7 +191,7 @@ Initialize your map by copying the following code into the HTML tab of your JSFi
 
 ### Add a title and info box(front-end UI):
 
-Add the following code between the <body> opening and </body> closing tags:
+Add the following code between the `<body>` opening and `</body>` closing tags:
 
 ```
 <div id='map'></div>
@@ -267,8 +269,6 @@ In the next step, you will add the map to your page and the project will start t
 
 For the next step you will need a [Mapbox access token](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/) and your [style ID](https://docs.mapbox.com/help/glossary/style-id/). Without this, the rest of the code will not work. 
 
-For the next step you will need a [Mapbox access token](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/) and your [style ID](https://docs.mapbox.com/help/glossary/style-id/). Without this, the rest of the code will not work. 
-
 <p align = "center">
   <img src="https://github.com/mjdanielson/University-of-Buffalo/blob/master/Labs/Choropleth-Map/Images/Access_Token.png">
 </p>
@@ -277,7 +277,7 @@ For the next step you will need a [Mapbox access token](https://docs.mapbox.com/
 <img src="https://github.com/mjdanielson/University-of-Buffalo/blob/master/Labs/Choropleth-Map/Images/Style_ID.gif">
 </p>
 
-Add the following code after <div class='map-over' id='legend'></div> and before the closing </body> tag
+Add the following code after `<div class='map-over' id='legend'></div>` and before the closing `</body>` tag
 
 ```javascript
 <script>
@@ -321,7 +321,7 @@ With some projects, this is where you'd stop: you put a map on a page! But for t
 
 ### Add the information box 
 
-Add the following code to your <div> element containing your map overlay class. This text should go after your 'Broad Street, 1854' header. 
+Add the following code to your `<div>` element containing your map overlay class. This text should go after your 'Broad Street, 1854' header. 
   
   
 ```
@@ -336,13 +336,13 @@ What is a callback?
 
 Initializing the map on the page does more than create a container in the map div. It also tells the browser to request the Mapbox Studio style you created in part 1. This can take variable amounts of time depending on how quickly the Mapbox server can respond to that request, and everything else you're going to add in the code relies on that style being loaded onto the map. As such, it's important to make sure the style is loaded before any more code is executed.
 
-Fortunately, the map object can tell your browser about certain events that occur when the map's state changes. One of these events is load, which is emitted when the style has been loaded onto the map. Through the map.on method, you can make sure that none of the rest of your code is executed until that event occurs by placing it in a [callback function](https://github.com/maxogden/art-of-node#callbacks) that is called when the load event occurs.
+Fortunately, the map object can tell your browser about certain events that occur when the map's state changes. One of these events is [`load`](https://docs.mapbox.com/mapbox-gl-js/api/#map.event:load), which is emitted when the style has been loaded onto the map. Through the [`map.on`](https://docs.mapbox.com/mapbox-gl-js/api/#map#on) method, you can make sure that none of the rest of your code is executed until that event occurs by placing it in a [callback function](https://github.com/maxogden/art-of-node#callbacks) that is called when the load event occurs.
 
 To make sure the rest of the code can execute, it needs to live in a callback function that is executed when the map is finished loading.
 
-Add the load event before the closing script tag </script>
+Add the load event before the closing script tag `</script>`
 
-```
+```js
 map.on('load', function() {
   // the rest of the code will go in here
 });
@@ -351,9 +351,9 @@ map.on('load', function() {
 
 ### Add a popup! 
 
-When the cursor is hovering over a graduate point a popup will display the number of cholera related deaths recorded in that region. 
+When the cursor is hovering over a graduated point a popup will display the number of cholera related deaths recorded in that region. 
 
-To do this, add a listener for the mousemove event, identify which graduated point is at the location of the cursor if any, and create a popup:
+To do this, add a listener for the [`mousemove`](https://docs.mapbox.com/mapbox-gl-js/api/#map.event:mousemove) event, identify which graduated point is at the location of the cursor if any, and create a popup:
 
 ```javascript
 
