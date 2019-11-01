@@ -40,7 +40,7 @@ In this tutorial you will:
 
 ## Data
 
-* [Cholera deaths](https://github.com/mjdanielson/Cholera-Map/blob/master/Data/Cholera_Deaths.geojson): Number of deaths attributed to cholera in 1854 by location. 
+* [Cholera deaths](https://github.com/mjdanielson/Cholera-Map/blob/master/Data/Cholera_Deaths.geojson): Number of deaths attributed to cholera in 1854 by location. Data sourced by [Robin Wilson at Southampton] University(http://blog.rtwilson.com/john-snows-cholera-data-in-more-formats/).
 
 * [Location of pumps](https://github.com/mjdanielson/Cholera-Map/blob/master/Data/Cholera_Pumps.geojson)
 
